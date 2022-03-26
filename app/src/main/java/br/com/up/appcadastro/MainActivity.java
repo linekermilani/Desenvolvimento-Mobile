@@ -2,6 +2,8 @@ package br.com.up.appcadastro;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 
+import br.com.up.appcadastro.adapter.UserListAdapter;
 import br.com.up.appcadastro.model.User;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button button = findViewById(R.id.button);
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,7 +38,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
 
+        UserListAdapter userListAdapter = new UserListAdapter(users);
+        recyclerView.setAdapter(userListAdapter);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
     }
 
     @Override

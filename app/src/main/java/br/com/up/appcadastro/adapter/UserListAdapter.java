@@ -1,5 +1,6 @@
 package br.com.up.appcadastro.adapter;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import br.com.up.appcadastro.R;
 import br.com.up.appcadastro.model.User;
 
 public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserViewHolder> {
@@ -22,7 +24,11 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserVi
     @Override
     public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        UserViewHolder userViewHolder = new UserViewHolder();
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+
+        View layout = layoutInflater.inflate(R.layout.view_user, parent, false);
+
+        UserViewHolder userViewHolder = new UserViewHolder(layout);
         return userViewHolder;
     }
 
