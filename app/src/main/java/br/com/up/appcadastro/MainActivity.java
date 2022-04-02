@@ -40,7 +40,18 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
 
-        UserListAdapter userListAdapter = new UserListAdapter(users);
+        UserListAdapter userListAdapter =
+                new UserListAdapter(users, new UserListAdapter.OnUserClickListener() {
+            @Override
+            public void onClick(User user) {
+                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivityForResult(intent, 5);
+
+                if(user != null) {
+                    intent.putExtra("user", user);
+                }
+            }
+        });
         recyclerView.setAdapter(userListAdapter);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);

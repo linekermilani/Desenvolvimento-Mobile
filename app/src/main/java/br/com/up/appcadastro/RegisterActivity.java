@@ -20,6 +20,15 @@ public class RegisterActivity extends AppCompatActivity {
         TextInputEditText editTextFirstName = findViewById(R.id.edit_text_first_name);
         TextInputEditText editTextSurName = findViewById(R.id.edit_text_sur_name);
         TextInputEditText editTextPhone = findViewById(R.id.edit_text_phone);
+
+        if(getIntent().hasExtra("user")){
+            User user = (User) getIntent().getSerializableExtra("user");
+
+            editTextFirstName.setText(user.getFirstName());
+            editTextSurName.setText(user.getSurName());
+            editTextPhone.setText(user.getPhone());
+        }
+
         Button saveButton = findViewById(R.id.button_register);
 
         saveButton.setOnClickListener(v -> {
